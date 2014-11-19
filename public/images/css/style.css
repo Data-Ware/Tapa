@@ -1,0 +1,156 @@
+/* main layout */
+body {
+	/*background-image: url(../images/testbg.jpg); */
+    background-repeat: no-repeat;
+	/*background-color: #231f20;*/
+	/*width: 100%;*/
+	font-family: "Courier New", Courier, "Anadale Mono", monospace; 
+	font-size: 11px;
+	line-height: 130%;
+	color: #231f20; /* tapa brown*/
+	width: 100%;
+}
+.statement {
+	width: 500px;
+	padding-left: 300px;
+	padding-top: 10px;
+	line-height: 115%;
+}
+	
+h2 {
+
+	font-family: georgia;
+	font-size: 26px;
+	font-weight: bold;
+	font-style: italic;
+	color: #231f20;
+
+}
+p.address {
+	padding-top: 75px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #000 ;
+	line-height: 115%;
+}
+
+p.sidetext {
+	padding: 70px 20px 0 20px;
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000 ;
+	line-height: 115%;
+}
+#main {
+	min-height: 672px;
+	background-image: url(../images/middle.gif);
+	background-repeat: no-repeat;
+	width: 1024px;	
+}
+#main p{
+	padding-left: 285px;
+	padding-right: 20px;
+}
+
+#container {
+	/*position: relative;*/
+	width: 900px;
+	height: 900px; 
+	margin: 0px auto;
+	padding: 0px;
+}
+
+#sidebar {
+	float: left;
+	width: 265px;
+}
+
+/* Navigation items */
+#nav_item {
+	min-height: 80px;
+/*	background-image: url(../images/top.gif);*/
+	
+	
+}
+
+#nav_item  ul {
+	float: right;
+	list-style: none;
+	padding-top: 30px;
+	margin-right: 20px;
+	
+}
+
+#nav_item li {
+	display: inline;
+}
+
+#nav_item a:link {
+	font-family: georgia;
+	font-size: 26px;
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: none;
+	color: #fecd07; /*tapa gold*/
+	padding: 0 10px;
+}
+
+#nav_item a:visited {
+	color: #fecd07; /*tapa gold*/
+}
+
+#nav_item a:hover {
+	color: #b49d4f;
+}
+
+#nav_item a:active {
+	color: #b49d4f; /*tapa gold*/
+}
+
+
+.mainpic {
+	border: 10px solid #FFFFFF;
+	margin-top: 20px;
+	margin-left: 313px;
+
+}
+/*
+#side{
+	float: left;
+	background-image: transparent url(../images/side.gif) top left;
+	width: 265px;
+	
+}
+
+ */
+
+/** Add by Hugh-Tran */
+
+div.img {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #0000ff;
+    height: auto;
+    width: auto;
+    float: left;
+    text-align: center;
+}	
+
+div.img img {
+    display: inline;
+    margin: 5px;
+    border: 1px solid #ffffff;
+}
+
+div.img a:hover img {
+    border: 1px solid #0000ff;
+}
+
+div.desc {
+  text-align: center;
+  font-weight: normal;
+  width: 120px;
+  margin: 5px;
+}

@@ -1,0 +1,118 @@
+
+@extends('dashboard.master')
+@section('content')
+<div class="col-md-9" >
+	<h2>Items-Management</h2>
+	<div>
+	<a href="{{ URL::to('items/create') }}" class="btn btn-success glyphicon glyphicon-plus-sign"> Add</a>
+	</div>
+
+<div class="table-responsive">
+              <table class="table table-striped table-hover tablesorter">
+                <thead>
+                  <tr>
+                    <th>ID <i class="fa fa"></i></th>
+                   
+                   	<th>Items Description <i class="fa fa"></i></th>
+                    <th>Edit <i class="fa fa"></i></th>
+                    <th>Delete <i class="fa fa"></i></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+
+
+	
+
+
+			@foreach($items as $item)
+			<tr>
+				<td>{{ $item->id_item }}</td>
+				<td>{{ $item->desc }}</td>
+				
+
+				
+				<td><a href="{{ URL::to('items/'. $item->id_item.'/edit') }}" class="btn btn-primary btn-xs glyphicon glyphicon-pencil">Edit
+			
+				<td>
+				
+					{{ Form::open(array('url' => 'items/' . $item->id_item)) }}
+					<button name="remove_item" class='btn btn-danger btn-xs' type='submit'>
+
+				{{--	{{ Form::hidden('_method', 'DELETE') }}
+					<i class=  value="delete" onclick="confirm('are you sure?');"><span class="fa fa-times"></span> Delete</button>
+					{{ Form::close()
+					
+					 <button type="button" data-toggle="modal" data-target="#myModal">Delete</button>
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						        <h4 class="modal-title">Confirm Popup</h4>
+						      </div>
+						      <div class="modal-body">
+						        <p>Are you sure you want to delete?</p>
+						      </div>
+						      <div class="modal-footer">
+						       
+						        
+						      </div>
+						    </div><! /.modal-content 
+						  </div>  /.modal-dialog 
+					</div> /.modal>--}}
+				
+
+				{{--<div id="myModal" class="modal fade">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-body">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        Hello world!
+				      </div>
+				      dialog buttons
+				      <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+				    </div>
+				  </div>
+				</div>--}}
+				
+
+				
+				<!--<a href="#" class="confirm-delete" data-id="1">Delete</a><br>
+				<div class="container">
+				<div id="myModal" class="modal hide">
+				    <div class="modal-header">
+				        <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+				         <h3>Delete</h3>
+				    </div>
+				   <div id="confirm" class="modal hide fade">
+ 				    <div class="modal-body">
+				        <p>You are about to delete.</p>
+				        <p>Do you want to proceed?</p>
+				    </div>
+				    <div class="modal-footer">
+				      <a href="#" id="btnYes" class="btn danger">Yes</a>
+				      <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
+				    </div>
+				</div>
+
+				<div id="confirm" class="modal hide fade">
+
+				  <div class="modal-body">
+				    Are you sure?
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+				    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+				  </div>
+				</div>--}}
+
+				</td>
+			</tr>
+			@endforeach
+		
+</div>
+
+
+@stop

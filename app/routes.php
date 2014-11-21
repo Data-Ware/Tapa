@@ -21,10 +21,13 @@ Route::get('contact',function()
 {
 	return View::make('contact.contact');
 });
-Route::get('/dashboard', function() 
+/*Route::get('/dashboard', function()
 {
 	return View::make('dashboard.index');
-});
+});*/
+Route::get('login', 'PagesController@login');
+Route::post('login', 'PagesController@post_login');
+Route::get('dashboard', 'PagesController@dashboard');
 
 
 
@@ -34,22 +37,5 @@ Route::resource('categorie', 'CategorieController');
 Route::resource('items', 'ItemController');
 Route::resource('imgs', 'ImgsController');
 
-//single block  test ok
-route::get('Single-block-ref', function(){
 
-	//$block= Block::find(2);
-	$block= Block::find(2);
-	$cat = $block->categorie;
-	($block->categorie);
-	 //var_dump[$block, $cat];
-	 return  [$block, $cat];
-
-});
-
-// Route::post('test', function()
-// {
-// 	// return 'in test';
-// 	$input = Input::all();
-// 	return  $input;
-// });
 

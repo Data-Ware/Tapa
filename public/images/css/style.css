@@ -4,8 +4,8 @@ body {
     background-repeat: no-repeat;
 	/*background-color: #231f20;*/
 	/*width: 100%;*/
-	font-family: "Courier New", Courier, "Anadale Mono", monospace; 
-	font-size: 11px;
+	font-family: "Arial","Courier New", Courier, "Anadale Mono", monospace; 
+	font-size: 15px;
 	line-height: 130%;
 	color: #231f20; /* tapa brown*/
 	width: 100%;
@@ -153,4 +153,13 @@ div.desc {
   font-weight: normal;
   width: 120px;
   margin: 5px;
+}
+
+body {
+	padding-top: 80px;
+}
+
+#sside ul li {
+    list-style-type: none;
+    margin-bottom:10px;
 }

@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'tapa',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'nitrous5470862',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -47,7 +47,7 @@ class ImgsController extends \BaseController {
 	    $file = Input::file('img');
 
 	    $extension = $file->getClientOriginalExtension();
-	    $file->move('public/images', $filename . '.' . $extension);
+	    $file->move('../public/images', $filename . '.' . $extension);
 
 
 			// } catch(Exception $e) {
@@ -59,19 +59,19 @@ class ImgsController extends \BaseController {
 
 		//image manipulation with intervention
 		//main image
-		Image::make('public/images/' . $filename . '.' . $extension)->resize(400, 267)->save('public/images/menuimages/' . $filename . '.' . $extension);
+		Image::make('../public/images/' . $filename . '.' . $extension)->resize(400, 267)->save('../public/images/menuimages/' . $filename . '.' . $extension);
 
 		//thumbnail image
-		Image::make('public/images/' . $filename . '.' . $extension)->resize(169, 113)->save('public/images/menuthumbs/' . $filename . '.' . $extension);
+		Image::make('../public/images/' . $filename . '.' . $extension)->resize(169, 113)->save('../public/images/menuthumbs/' . $filename . '.' . $extension);
 
 		//delete original image
-		unlink('public/images/' . $filename . '.' . $extension);
+		unlink('../public/images/' . $filename . '.' . $extension);
 
 		//refence image into database
 		$dbImg = new Img;
-		$dbImg -> img_path = 'images/menuthumbs/' . $filename . '.' . $extension;
+		$dbImg -> img_path = '/tapa/public/images/menuthumbs/' . $filename . '.' . $extension;
 		$dbImg -> title = $filename;
-		$dbImg -> a_path = 'images/menuimages/' . $filename . '.' . $extension;
+		$dbImg -> a_path = '/tapa/public/images/menuimages/' . $filename . '.' . $extension;
 		$dbImg -> alt = $filename;
 
 		$dbImg -> id_block = Input::get('id_block');

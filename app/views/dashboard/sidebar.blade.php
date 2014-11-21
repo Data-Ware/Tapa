@@ -1,6 +1,6 @@
  
 
-<div class="col-md-3">
+<div id="sside" class="col-lg-3">
 	<ul>
 		<li><a href="{{ URL::to('dashboard') }}">Dashboard</a></li>
 			

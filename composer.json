@@ -9,9 +9,7 @@
 
 	"require-dev": {
     "way/generators": "2.*",
-    "intervention/image": "2.*",
-    // "artdarek/oauth-4-laravel": "dev-master",
-    // "google/apiclient": "dev-master"
+    "intervention/image": "2.*"
 	},
 	
 	"autoload": {

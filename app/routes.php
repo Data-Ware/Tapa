@@ -38,6 +38,5 @@ Route::resource('items', 'ItemController');
 Route::resource('imgs', 'ImgsController');
 
 
-1233
 
 

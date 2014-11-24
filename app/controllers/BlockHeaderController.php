@@ -9,9 +9,15 @@ class BlockHeaderController extends \BaseController {
 	 */
 	public function index()
 	{
-		$items = BlockHeader::all();
-
-		return View::make('dashboard.blockheader.index', compact('items'));
+		if(Auth::user())
+		{
+			$items = BlockHeader::all();
+			return View::make('dashboard.blockheader.index', compact('items'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 
@@ -22,9 +28,17 @@ class BlockHeaderController extends \BaseController {
 	 */
 	public function create()
 	{
-		$block = DB::table('blocks')->lists('id_block', 'id_block');
-		return View::make('dashboard.blockheader.create', compact('block'));
+		if(Auth::user())
+		{
+			$block = DB::table('blocks')->lists('id_block', 'id_block');
+			return View::make('dashboard.blockheader.create', compact('block'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
+
 
 
 	/**
@@ -38,9 +52,7 @@ class BlockHeaderController extends \BaseController {
 		$item->header= Input::get('header');
 		$item->sub_header= Input::get('sub_header');
 		$item->price= Input::get('price');
-
 		$item->id_block = Input::get('id_block');
-
 		$item->save();
 		return Redirect::to('blockheader');
 	}
@@ -66,10 +78,16 @@ class BlockHeaderController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$item = Blockheader::find($id);
-		return View::make('dashboard.blockheader.edit')
-		->with('item', $item);
-
+		if(Auth::user())
+		{
+			$item = Blockheader::find($id);
+			return View::make('dashboard.blockheader.edit')
+			->with('item', $item);
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}	
 	}
 
 
@@ -83,7 +101,6 @@ class BlockHeaderController extends \BaseController {
 	{
 		$item = Blockheader::find($id);
 		$input=Input::all();
-
 		$item->header = Input::get('header');
 		$item->sub_header= Input::get('sub_header');
 		$item->price = Input::get('price');
@@ -100,11 +117,18 @@ class BlockHeaderController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$item = Blockheader::find($id);
-		$item->delete();
-		return Redirect::to('blockheader');
-
+		if(Auth::user())
+		{
+			$item = Blockheader::find($id);
+			$item->delete();
+			return Redirect::to('blockheader');
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}	
 	}
 
 
 }
+

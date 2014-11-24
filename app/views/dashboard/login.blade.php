@@ -32,7 +32,7 @@
 							<label class="control-label" for="username">User Name</label>
 							<div class="controls">
 								<input id="username" name="username" type="text">
-								<p class="help-block">Please enter registration name.</p>
+							{{--	<p class="help-block">Please enter registration name.</p>--}}
 							</div>
 						</div>
 
@@ -43,6 +43,7 @@
 								<input id="password" name="password" type="password">
 								<p class="help-block">Please enter password</p>
 							</div>
+							
 						</div>
 					</fieldset>
 
@@ -59,3 +60,4 @@
 
 </body>
 </html>
+

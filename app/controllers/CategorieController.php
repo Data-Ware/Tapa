@@ -10,9 +10,15 @@ class CategorieController extends \BaseController {
 	public function index()
 	{
 		//var_dump($cat);
-	 	$cat = Categorie::all();	 		
-	 	return View::make('dashboard.categorie.index', compact('cat'));
-	 
+	 	if(Auth::user())
+		{
+		 	$cat = Categorie::all();	 		
+		 	return View::make('dashboard.categorie.index', compact('cat'));
+	 	}
+	 	else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 
@@ -23,7 +29,14 @@ class CategorieController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('dashboard.categorie.create');
+		if(Auth::user())
+		{
+			return View::make('dashboard.categorie.create');
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 
@@ -49,8 +62,15 @@ class CategorieController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$cat = Categorie::find($id);
-		return View::make('dashboard.categorie.show', compact('cat'));
+		if(Auth::user())
+		{
+			$cat = Categorie::find($id);
+			return View::make('dashboard.categorie.show', compact('cat'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}		
 	}
 
 
@@ -62,14 +82,17 @@ class CategorieController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$cat = Categorie::find($id);
-		return View::make('dashboard.categorie.edit')
-		->with('cat', $cat);
-		//$block = Block::with(['blockheaders', 'items', 'imgs'])->find($id);
-		//return $block;
-		// $block=Categorie::with(['blocks', 'blocks.blockheaders', 'blocks.items', 'blocks.imgs'])->find($id);
-		// return View::make('dashboard.block.testblock')
-		// ->with('block', $block);
+		
+		if(Auth::user())
+		{
+			$cat = Categorie::find($id);
+			return View::make('dashboard.categorie.edit')
+			->with('cat', $cat);
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}	
 	}
 
 
@@ -83,7 +106,6 @@ class CategorieController extends \BaseController {
 	{
 		$item = Categorie::find($id);
 		$input=Input::all();
-		
 		$item->desc=$input['cat'];
 		$item->save();
 		return Redirect::to('categorie');
@@ -98,11 +120,16 @@ class CategorieController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$cat = Categorie::find($id);
-
-		$cat->delete();
-		
-		return Redirect::to('categorie');
+		if(Auth::user())
+		{
+			$cat = Categorie::find($id);
+			$cat->delete();		
+			return Redirect::to('categorie');
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 }

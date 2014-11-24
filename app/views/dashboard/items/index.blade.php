@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="table-responsive">
-              <table class="table table-striped table-hover tablesorter ">
+              <table class="table table-striped table-hover tablesorter table-bordered ">
                 <thead>
                   <tr>
                     <th>ID <i class="fa fa"></i></th>

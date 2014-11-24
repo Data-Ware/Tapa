@@ -1,5 +1,4 @@
-
-      <!-- Static navbar -->
+<!-- Static navbar -->
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -13,13 +12,12 @@
           </div><!-- nav-header -->
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <!-- <li><a href="/">Home</a></li> -->
-              <!-- <li><a href="/about">About</a></li> -->
-              @if(!Auth::user())
-                <li>{{ HTML::link('about', 'About') }}
-                <li>{{ HTML::link('who', 'Who') }}
+              
+            @if(!Auth::user())
+                <li>{{ HTML::link('catering', 'Catering') }}
+                
               @endif
-              <!-- <li><a href="/gallery">Gallery</a></li> -->
+            
               <!-- <li><a href="/dashboard">Dashboard</a></li> -->
               @if(Auth::user())
                 <li>{{ HTML::link('dashboard', 'Dashboard') }}

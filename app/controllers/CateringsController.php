@@ -1,5 +1,4 @@
 <?php
-
 class CateringsController extends \BaseController {
 
 	/**
@@ -11,8 +10,6 @@ class CateringsController extends \BaseController {
 	public function index()
 	{
 		$cat=Categorie::with(['blocks', 'blocks.blockheaders', 'blocks.items', 'blocks.imgs'])->get();
-
-		//return View::make('catering.catering', array( 'cat' => $cat ));
 		return View::make('dashboard.caterings',array( 'cat' => $cat ));
 	}
 
@@ -47,8 +44,7 @@ class CateringsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//$block= Block::with(['categories', 'items'])->where('id_block', '=', $id)->first();
-		//return $block;
+		//
 	}
 
 	/**

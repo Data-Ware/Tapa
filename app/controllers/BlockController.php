@@ -8,10 +8,17 @@ class BlockController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
-		$items = Block::all();
 
-		return View::make('dashboard.block.index', compact('items'));
+	{
+		if(Auth::user())
+		{
+			$items = Block::all();
+			return View::make('dashboard.block.index', compact('items'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 
@@ -22,8 +29,15 @@ class BlockController extends \BaseController {
 	 */
 	public function create()
 	{
-		$cat = DB::table('categories')->lists('desc', 'id_cat');
-		return View::make('dashboard.block.create', compact('cat'));
+		if(Auth::user())
+		{
+			$cat = DB::table('categories')->lists('desc', 'id_cat');
+			return View::make('dashboard.block.create', compact('cat'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 
@@ -36,7 +50,6 @@ class BlockController extends \BaseController {
 	{
 		$block = new Block;
 		$block->id_cat = Input::get('id_cat');
-
 		$block->save();
 		return Redirect::to('block');
 	}
@@ -86,8 +99,18 @@ class BlockController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		if(Auth::user())
+		{
+			$block =Block::find($id);
+			$block->delete();
+			return Redirect::to('block');
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 
 }
+

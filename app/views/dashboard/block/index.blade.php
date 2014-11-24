@@ -5,6 +5,7 @@
 	<div>
 	<a href="{{ URL::to('block/create') }}" class="btn btn-success glyphicon glyphicon-plus-sign"> Add</a>
 	</div>
+
 	<div class="table-responsive">
               <table class="table table-striped table-hover tablesorter">
                 <thead>
@@ -17,6 +18,7 @@
                   </tr>
                 </thead>
                 <tbody>
+	
 			@foreach($items as $i)
 			<tr>
 				<td>{{ $i->id_block }}</td>
@@ -31,8 +33,8 @@
 					{{ Form::open(array('url' => 'block/' . $i->id_block)) }}
 					<button class='btn btn-danger btn-xs' type='submit'>
 					{{ Form::hidden('_method', 'DELETE') }}
-                        
 					<i value="delete" onclick="confirm('Are you sure you want to remove?');"><span class="fa fa-times"></span> Delete</button>
+
 					{{ Form::close() }}
 				</td>
 			</tr>

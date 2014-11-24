@@ -9,10 +9,16 @@ class ItemController extends \BaseController {
 	 */
 	public function index()
 	{
+		
+		if(Auth::user())
+		{	
 		$items = Item::all();
-
-	return View::make('dashboard.items.index', compact('items'));
-
+		return View::make('dashboard.items.index', compact('items'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 
@@ -24,8 +30,16 @@ class ItemController extends \BaseController {
 	 */
 	public function create()
 	{
-		$block = DB::table('blocks')->lists('id_block', 'id_block');
-		return View::make('dashboard.items.create', compact('block'));
+		if(Auth::user())
+		{
+			$block = DB::table('blocks')->lists('id_block', 'id_block');
+			return View::make('dashboard.items.create', compact('block'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}	
+
 	}
 
 
@@ -38,9 +52,7 @@ class ItemController extends \BaseController {
 	{
 		$item = new Item;
 		$item->desc = Input::get('item');
-
 		$item->id_block = Input::get('id_block');
-
 		$item->save();
 		return Redirect::to('items');
 	}
@@ -54,9 +66,16 @@ class ItemController extends \BaseController {
 	 */
 	public function show($id)
 	{
-
-		$item = Item::find($id);
-		return View::make('dashboard.items.show', compact('item'));
+		if(Auth::user())
+		{
+			$item = Item::find($id);
+			return View::make('dashboard.items.show', compact('item'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
+			
 	}
 
 
@@ -68,9 +87,16 @@ class ItemController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$item = Item::find($id);
-		return View::make('dashboard.items.edit')
-		->with('item', $item);
+		if(Auth::user())
+		{
+			$item = Item::find($id);
+			return View::make('dashboard.items.edit')
+			->with('item', $item);
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}	
 
 	}
 
@@ -99,12 +125,17 @@ class ItemController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$item = Item::find($id);
-
-		$item->delete();
-
-
-		return Redirect::to('items');
+		
+		if(Auth::user())
+		{
+			$item = Item::find($id);
+			$item->delete();
+			return Redirect::to('items');
+		}
+		else
+		{	
+			return Redirect::to('/login');
+		}	
 	}
 
 

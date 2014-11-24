@@ -10,10 +10,15 @@ class ImgsController extends \BaseController {
 	 */
 	public function index()
 	{
-
-		$imgs = Img::all();
-	 	return View::make('dashboard.imgs.index', compact('imgs'));
-
+		if(Auth::user())
+		{
+			$imgs = Img::all();
+		 	return View::make('dashboard.imgs.index', compact('imgs'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 	/**
@@ -24,9 +29,16 @@ class ImgsController extends \BaseController {
 	 */
 	public function create()
 	{
-		// $cat = DB::table('categories')->lists('desc', 'id_cat');
-		$block = DB::table('blocks')->lists('id_block', 'id_block');
-		return View::make('dashboard.imgs.create', compact('block'));
+		if(Auth::user())
+		{
+			// $cat = DB::table('categories')->lists('desc', 'id_cat');
+			$block = DB::table('blocks')->lists('id_block', 'id_block');
+			return View::make('dashboard.imgs.create', compact('block'));
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}
 	}
 
 	/**
@@ -47,7 +59,7 @@ class ImgsController extends \BaseController {
 	    $file = Input::file('img');
 
 	    $extension = $file->getClientOriginalExtension();
-	    $file->move('../public/images', $filename . '.' . $extension);
+	    $file->move('public/images', $filename . '.' . $extension);
 
 
 			// } catch(Exception $e) {
@@ -59,19 +71,23 @@ class ImgsController extends \BaseController {
 
 		//image manipulation with intervention
 		//main image
-		Image::make('../public/images/' . $filename . '.' . $extension)->resize(400, 267)->save('../public/images/menuimages/' . $filename . '.' . $extension);
+		$manipulation = Image::make('public/images/' . $filename . '.' . $extension);
+		$manipulation->resize(400, 267);
+		$manipulation->save('../public/images/menuimages/' . $filename . '.' . $extension);
 
 		//thumbnail image
-		Image::make('../public/images/' . $filename . '.' . $extension)->resize(169, 113)->save('../public/images/menuthumbs/' . $filename . '.' . $extension);
+		$manipulation = Image::make('public/images/' . $filename . '.' . $extension);
+		$manipulation->resize(169, 113);
+		$manipulation->save('../public/images/menuthumbs/' . $filename . '.' . $extension);
 
 		//delete original image
-		unlink('../public/images/' . $filename . '.' . $extension);
+		unlink('public/images/' . $filename . '.' . $extension);
 
 		//refence image into database
 		$dbImg = new Img;
-		$dbImg -> img_path = '/tapa/public/images/menuthumbs/' . $filename . '.' . $extension;
+		$dbImg -> img_path = 'images/menuthumbs/' . $filename . '.' . $extension;
 		$dbImg -> title = $filename;
-		$dbImg -> a_path = '/tapa/public/images/menuimages/' . $filename . '.' . $extension;
+		$dbImg -> a_path = 'images/menuimages/' . $filename . '.' . $extension;
 		$dbImg -> alt = $filename;
 
 		$dbImg -> id_block = Input::get('id_block');
@@ -89,10 +105,15 @@ class ImgsController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		if(Auth::user())
+		{
 		 $imgs = Img::find($id);
 		 return View::make('dashboard.imgs.show', compact('imgs'));
-
-
+		}
+		else
+		{	
+			return Redirect::to('/login');
+		}
 
 	}
 
@@ -105,11 +126,7 @@ class ImgsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		// $imgs = Img::find($id);
-		// var_dump($imgs);
-		// return View::make('dashboard.imgs.edit')
-
-		// ->with('imgs', $imgs);
+		//
 	}
 
 	/**
@@ -138,10 +155,16 @@ class ImgsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$imgs = Img:: find ($id);
-		$imgs->delete();
-
-		return Redirect::to('imgs');
+		if(Auth::user())
+		{
+			$imgs = Img:: find ($id);
+			$imgs->delete();
+			return Redirect::to('imgs');
+		}
+		else
+		{
+			return Redirect::to('/login');
+		}	
 	}
 
 }

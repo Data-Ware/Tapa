@@ -35,3 +35,5 @@ Route::resource('blockheader', 'BlockHeaderController');
 Route::resource('categorie', 'CategorieController');
 Route::resource('items', 'ItemController');
 Route::resource('imgs', 'ImgsController');
+
+12222

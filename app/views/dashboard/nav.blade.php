@@ -8,7 +8,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/tapa/public">Tapa</a>
+            <a class="navbar-brand" href="/">Tapa</a>
           </div><!-- nav-header -->
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">

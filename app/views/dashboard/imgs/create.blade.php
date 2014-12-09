@@ -1,8 +1,9 @@
 @extends('dashboard.master')
 @section('content')
 <div class="col-md-9">
+<h1>testing head</h1>
 
-	<h2>Upload Image to Gallery</h2>
+	<h2>Upload Image to Gallery sdsds</h2>
 	{{ Form::open(array ('url' => 'imgs','files' => true)) }}
 		<div>
 			<li>
